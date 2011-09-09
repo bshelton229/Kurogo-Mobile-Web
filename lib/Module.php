@@ -11,7 +11,7 @@
 define ('FILTER_SANITIZE_KUROGO_DEFAULT', 'KurogoDefaultSanitizeFilter');
 abstract class Module
 {
-    protected $id='none';
+    protected static $id='none';
     protected $configModule;
     protected $moduleName = '';
     protected $args = array();
@@ -22,7 +22,7 @@ abstract class Module
       * @return string
       */
     public function getID() {
-        return $this->id;
+        return static::$id;
     }
 
     /**
@@ -139,7 +139,7 @@ abstract class Module
     public function __construct() {
         //set the config module if it's not defined in the class definition
         if (!$this->configModule) {
-            $this->configModule = $this->id;
+            $this->configModule = $this::$id;
         }
     }
     
@@ -529,7 +529,7 @@ abstract class Module
             $configData = array();
             $files = array(
                 'common'=>sprintf("%s/common/config/admin-module.json", APP_DIR),
-                'module'=>sprintf("%s/%s/config/admin-module.json", MODULES_DIR, $this->id)
+                'module'=>sprintf("%s/%s/config/admin-module.json", MODULES_DIR, $this::$id)
             );
 
             foreach ($files as $type=>$file) {                

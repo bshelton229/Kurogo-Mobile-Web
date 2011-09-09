@@ -9,7 +9,7 @@
   * @subpackage Admin
   */
 class AdminWebModule extends WebModule {
-    protected $id = 'admin';
+    protected static $id = 'admin';
   
     private function getNavSections() {
         $navSections = array(

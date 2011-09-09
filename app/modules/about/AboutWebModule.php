@@ -9,7 +9,7 @@
   * @subpackage About
   */
 class AboutWebModule extends WebModule {
-  protected $id = 'about';
+  protected static $id = 'about';
 
   private function getPhraseForDevice() {
     switch($this->platform) {

@@ -4,7 +4,7 @@ Kurogo::includePackage('Maps');
 
 class MapAPIModule extends APIModule
 {
-    protected $id = 'map';
+    protected static $id = 'map';
     protected $feeds = null;
     protected $vmin = 1;
     protected $vmax = 1;

@@ -4,7 +4,7 @@ Kurogo::includePackage('People');
 
 class PeopleAPIModule extends APIModule
 {
-    protected $id = 'people';
+    protected static $id = 'people';
     protected $vmin = 1;
     protected $vmax = 1;
     private $fieldConfig;

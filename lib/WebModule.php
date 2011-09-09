@@ -191,7 +191,7 @@ abstract class WebModule extends Module {
       $minifyArgs['pageOnly'] = 'true';
     }
     
-    if ($this->id != $this->configModule) {
+    if ($this::$id != $this->configModule) {
       $minifyArgs['config'] = $this->configModule;
     }
     
@@ -202,7 +202,9 @@ abstract class WebModule extends Module {
   
   private function getMinifyUrls($pageOnly=false) {
     $page = preg_replace('/[\s-]+/', '+', $this->page);
-    $minKey = "{$this->id}-{$page}-{$this->pagetype}-{$this->platform}-".md5(THEME_DIR);
+    $parentId = eval('return '.get_parent_class($this).'::$id;');
+    $modules = implode(',',array($this::$id, $parentId));
+    $minKey = "{$modules}-{$page}-{$this->pagetype}-{$this->platform}-".md5(THEME_DIR);
     
     return array(
       'css' => "/min/g=css-$minKey".$this->getMinifyArgString($pageOnly),
@@ -277,7 +279,7 @@ abstract class WebModule extends Module {
   //
   private function loadTemplateEngineIfNeeded() {
     if (!isset($this->templateEngine)) {
-      $this->templateEngine = new TemplateEngine($this->id);
+      $this->templateEngine = new TemplateEngine($this::$id);
     }
   }
   
@@ -435,7 +437,7 @@ abstract class WebModule extends Module {
             }
             
             $this->setPage($page);
-            $this->setTemplatePage($this->page, $this->id);
+            $this->setTemplatePage($this->page, $this::$id);
             $this->setAutoPhoneNumberDetection(Kurogo::getSiteVar('AUTODETECT_PHONE_NUMBERS'));
         }
     }
@@ -1060,7 +1062,7 @@ abstract class WebModule extends Module {
   }
   
   protected function setTemplatePage($page, $moduleID=null) {
-    $moduleID = is_null($moduleID) ? $this->id : $moduleID;
+    $moduleID = is_null($moduleID) ? $this::$id : $moduleID;
     $this->templatePage = $page;
     $this->templateModule = $moduleID;
   }
@@ -1205,7 +1207,7 @@ abstract class WebModule extends Module {
     $this->loadPageConfig();
     
     // Set variables common to all modules
-    $this->assign('moduleID',     $this->id);
+    $this->assign('moduleID',     $this::$id);
     $this->assign('configModule',  $this->configModule);
     $this->assign('templateModule', $this->templateModule);
     $this->assign('moduleName',   $this->moduleName);
@@ -1275,10 +1277,13 @@ abstract class WebModule extends Module {
     // Module Help
     if ($this->page == 'help') {
       $this->assign('hasHelp', false);
-      $template = 'common/templates/'.$this->page;
+      $template[] = 'common/templates/'.$this->page;
     } else {
       $this->assign('hasHelp', isset($moduleStrings['help']));
-      $template = 'modules/'.$this->templateModule.'/templates/'.$this->templatePage;
+      $template[] = 'modules/'.$this::$id.'/templates/'.$this->templatePage;
+      $parentId = eval('return '.get_parent_class($this).'::$id;');
+      $template[] = 'modules/'.$parentId.'/templates/'.$this->templatePage;
+
     }
     
     // Pager support

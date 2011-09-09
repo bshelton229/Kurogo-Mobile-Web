@@ -9,7 +9,7 @@
   * @subpackage Links
   */
 class LinksWebModule extends WebModule {
-    protected $id = 'links';
+    protected static $id = 'links';
     protected $linkGroups;
 
     protected function getLinkGroup($group) {

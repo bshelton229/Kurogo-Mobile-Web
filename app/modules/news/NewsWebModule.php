@@ -9,7 +9,7 @@
   * @subpackage News
   */
 class NewsWebModule extends WebModule {
-  protected $id = 'news';
+  protected static $id = 'news';
   protected $feeds = array();
   protected $feedIndex = 0;
   protected $feed;

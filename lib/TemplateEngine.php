@@ -76,26 +76,34 @@ class TemplateEngine extends Smarty {
   // Finding include files
   //
   
-  static private function getIncludeFile($name) {
-    $subDir = dirname($name);
-    $page = basename($name, '.tpl');
-    
+  static private function getIncludeFile($names) {
+
+    if(!is_array($names))
+    {
+        $names = array($names);
+    }
     $pagetype = Kurogo::deviceClassifier()->getPagetype();
     $platform = Kurogo::deviceClassifier()->getPlatform();
-
-    if (strlen($subDir)) { $subDir .= '/'; }
   
     $checkDirs = array(
       'THEME_DIR'    => THEME_DIR,
       'SITE_APP_DIR' => SITE_APP_DIR,
       'APP_DIR'      => APP_DIR,
     );
-    $checkFiles = array(
-      "$subDir$page-$pagetype-$platform.tpl", // platform-specific
-      "$subDir$page-$pagetype.tpl",           // pagetype-specific
-      "$subDir$page.tpl"                      // default
-    );
-    
+
+    $checkFiles = array();
+    foreach($names as $name)
+    {
+        $subDir = dirname($name);
+        $page = basename($name, '.tpl');
+        if (strlen($subDir)) { $subDir .= '/'; }
+
+        $checkFiles = array_merge($checkFiles, array(
+            "$subDir$page-$pagetype-$platform.tpl", // platform-specific
+            "$subDir$page-$pagetype.tpl",           // pagetype-specific
+            "$subDir$page.tpl"                      // default
+        ));
+    }
     foreach ($checkFiles as $file) {
       foreach ($checkDirs as $type => $dir) {
         $test = realpath_exists("$dir/$file");

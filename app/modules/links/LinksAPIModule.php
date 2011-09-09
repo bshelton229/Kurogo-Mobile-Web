@@ -9,7 +9,7 @@
   * @subpackage Links
   */
 class LinksAPIModule extends APIModule {
-    protected $id = 'links';
+    protected static $id = 'links';
     protected $vmin = 1;
     protected $vmax = 1;
     protected $linkGroups;

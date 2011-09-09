@@ -4,7 +4,7 @@
   * @subpackage Fullweb
   */
 class UrlWebModule extends WebModule {
-  protected $id = 'url';
+  protected static $id = 'url';
   
   protected function initializeForPage() {
      if ($url = $this->getModuleVar('url')) {

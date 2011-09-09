@@ -9,7 +9,7 @@
   * @subpackage Error
   */
 class ErrorWebModule extends WebModule {
-  protected $id = 'error';
+  protected static $id = 'error';
   protected $configModule = 'error';
   protected $moduleName = 'Error';
   protected $canBeAddedToHomeScreen = false;
@@ -54,7 +54,7 @@ class ErrorWebModule extends WebModule {
       $this->pagetype = Kurogo::deviceClassifier()->getPagetype();
       $this->platform = Kurogo::deviceClassifier()->getPlatform();
       $this->page = 'index';
-      $this->setTemplatePage($this->page, $this->id);
+      $this->setTemplatePage($this->page, $this::$id);
       $this->args = $args;
       return;
   }

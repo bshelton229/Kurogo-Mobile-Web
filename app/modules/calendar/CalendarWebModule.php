@@ -14,7 +14,7 @@ define('DAY_SECONDS', 24*60*60);
   * @subpackage Calendar
   */
 class CalendarWebModule extends WebModule {
-  protected $id = 'calendar';
+  protected static $id = 'calendar';
   protected $feeds = array();
   protected $timezone;
   protected $defaultSearchOption = 0;

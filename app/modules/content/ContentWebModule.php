@@ -1,7 +1,7 @@
 <?php
 
 class ContentWebModule extends WebModule {
-    protected $id = 'content';
+    protected static $id = 'content';
 	protected $contentGroups;
 	protected $feedGroups = null;
 

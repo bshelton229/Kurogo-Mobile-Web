@@ -2,7 +2,7 @@
 
 class CoreAPIModule extends APIModule
 {
-    protected $id = 'core';
+    protected static $id = 'core';
     protected $vmin = 1;
     protected $vmax = 1;
 

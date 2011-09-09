@@ -2,7 +2,7 @@
 
 class AboutAPIModule extends APIModule {
 
-    protected $id = 'about';
+    protected static $id = 'about';
     protected $vmin = 1;
     protected $vmax = 1;
     public function availableVersions() {

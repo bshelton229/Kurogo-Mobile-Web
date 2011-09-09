@@ -9,7 +9,7 @@
   * @subpackage Customize
   */
 class CustomizeWebModule extends WebModule {
-    protected $id = 'customize';
+    protected static $id = 'customize';
 
     private function getModuleCustomizeList() {    
         $navModules = $this->getAllModuleNavigationData(self::INCLUDE_DISABLED_MODULES);

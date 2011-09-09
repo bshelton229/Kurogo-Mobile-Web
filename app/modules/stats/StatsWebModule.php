@@ -9,7 +9,7 @@
   * @subpackage Stats
   */
 class StatsWebModule extends WebModule {
-  protected $id = 'stats';
+  protected static $id = 'stats';
   protected $platforms = Array(
     'iphone' => 'iPhone',
     'android' => 'Android',

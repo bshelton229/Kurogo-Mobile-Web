@@ -1,7 +1,7 @@
 <?php
 
 class DownloadWebModule extends WebModule {
-    protected $id = 'download';
+    protected static $id = 'download';
     
     public static function appDownloadText($platform) {
         if ($config = ModuleConfigFile::factory('download', 'apps')) {

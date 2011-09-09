@@ -2,7 +2,7 @@
 
 class NewsAPIModule extends APIModule {
 
-    protected $id = 'news';
+    protected static $id = 'news';
     protected $vmin = 1;
     protected $vmax = 1;
     

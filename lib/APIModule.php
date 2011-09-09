@@ -55,7 +55,7 @@ abstract class APIModule extends Module
    * An unrecognized command was requested
    */
   protected function invalidCommand() {
-    $error = new KurogoError(5, 'Invalid Command', "The $this->id module does not understand $this->command");
+    $error = new KurogoError(5, 'Invalid Command', "The $this::$id module does not understand $this->command");
     $this->throwError($error);
   }
 
@@ -100,7 +100,7 @@ abstract class APIModule extends Module
 
   protected function redirectTo($command, $args=array()) {
     
-    $url = URL_BASE . API_URL_PREFIX . "/$this->id/$command";
+    $url = URL_BASE . API_URL_PREFIX . "/$this::$id/$command";
 
     if (count($args)) {
       $url .= http_build_query($args);
@@ -169,7 +169,7 @@ abstract class APIModule extends Module
    */
   private function loadResponseIfNeeded() {
     if (!isset($this->response)) {
-      $this->response = new APIResponse($this->id, $this->configModule, $this->command);
+      $this->response = new APIResponse($this::$id, $this->configModule, $this->command);
     }
   }
   

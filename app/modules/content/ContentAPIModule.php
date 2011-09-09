@@ -2,7 +2,7 @@
 
 class ContentAPIModule extends APIModule {
 
-    protected $id = 'content';
+    protected static $id = 'content';
     protected $vmin = 1;
     protected $vmax = 1;
 

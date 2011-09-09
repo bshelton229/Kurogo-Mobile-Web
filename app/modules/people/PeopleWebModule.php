@@ -11,7 +11,7 @@ Kurogo::includePackage('People');
   * @subpackage People
   */
 class PeopleWebModule extends WebModule {
-    protected $id = 'people';
+    protected static $id = 'people';
     protected $bookmarkLinkTitle = 'Bookmarked People';
     protected $detailFields = array();
     protected $detailAttributes = array();

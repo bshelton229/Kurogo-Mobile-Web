@@ -2,7 +2,7 @@
 
 class LoginAPIModule extends APIModule
 {
-    protected $id = 'login';
+    protected static $id = 'login';
     protected $vmin = 1;
     protected $vmax = 1;
     public function availableVersions() {

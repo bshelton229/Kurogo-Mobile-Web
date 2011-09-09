@@ -2,7 +2,7 @@
 
 class AdminAPIModule extends APIModule
 {
-    protected $id = 'admin';
+    protected static $id = 'admin';
     protected $vmin = 1;
     protected $vmax = 1;
     private $loadedConfigs = array();

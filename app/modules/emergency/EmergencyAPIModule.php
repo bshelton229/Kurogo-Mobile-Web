@@ -4,7 +4,7 @@ Kurogo::includePackage('Emergency');
 
 class EmergencyAPIModule extends APIModule {
 
-    protected $id = 'emergency';
+    protected static $id = 'emergency';
     protected $vmin = 1;
     protected $vmax = 1;
     

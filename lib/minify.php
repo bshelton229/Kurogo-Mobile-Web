@@ -132,7 +132,8 @@ function getMinifyGroupsConfig() {
   // if this is a copied module also pull in files from that module
   $configModule = isset($_GET['config']) ? $_GET['config'] : '';
 
-  list($ext, $module, $page, $pagetype, $platform, $pathHash) = explode('-', $key);
+  list($ext, $modules, $page, $pagetype, $platform, $pathHash) = explode('-', $key);
+  $modules = explode(',',$modules);
 
   $cache = new DiskCache(CACHE_DIR.'/minify', Kurogo::getOptionalSiteVar('MINIFY_CACHE_TIMEOUT', 30), true);
   $cacheName = "group_$key";
@@ -149,17 +150,18 @@ function getMinifyGroupsConfig() {
       SITE_APP_DIR,
       THEME_DIR,
     );
-    
-    if ($pageOnly || (($pagetype=='tablet' || $platform=='computer') && in_array($module, array('info', 'admin')))) {
-      // Info module does not inherit from common files
-      $subDirs = array(
-        '/modules/'.$module
-      );
+
+    if ($pageOnly || (($pagetype=='tablet' || $platform=='computer') && in_array($module[0], array('info', 'admin')))) {
+        // Info module does not inherit from common files
+        $subDirs = array(
+            '/modules/'.$module[0]
+        );
     } else {
-      $subDirs = array(
-        '/common',
-        '/modules/'.$module,
-      );
+        $subDirs = array( '/common' );
+        foreach($modules as $module)
+        {
+            $subDirs[] = '/modules/'.$module;
+        }
     }
     
     if ($configModule) {

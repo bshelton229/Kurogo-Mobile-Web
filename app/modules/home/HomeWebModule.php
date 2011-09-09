@@ -9,7 +9,7 @@
   * @subpackage Home
   */
 class HomeWebModule extends WebModule {
-  protected $id = 'home';
+  protected static $id = 'home';
   protected $canBeAddedToHomeScreen = false;
   protected $hideFooterLinks = true;
 

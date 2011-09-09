@@ -2,7 +2,7 @@
 
 class HomeAPIModule extends APIModule
 {
-    protected $id = 'home';
+    protected static $id = 'home';
     protected $vmin = 1;
     protected $vmax = 1;
 

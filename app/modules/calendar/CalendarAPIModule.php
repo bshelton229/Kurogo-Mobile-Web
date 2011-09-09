@@ -6,7 +6,7 @@ class CalendarAPIModule extends APIModule
 {
     const ERROR_NO_SUCH_EVENT = 50;
 
-    protected $id = 'calendar';
+    protected static $id = 'calendar';
     protected $vmin = 1;
     protected $vmax = 1;
 

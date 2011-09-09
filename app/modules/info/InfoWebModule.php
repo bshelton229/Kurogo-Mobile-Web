@@ -9,7 +9,7 @@
   * @subpackage Info
   */
 class InfoWebModule extends WebModule {
-  protected $id = 'info';
+  protected static $id = 'info';
      
   protected function initializeForPage() {
     // Just a static page

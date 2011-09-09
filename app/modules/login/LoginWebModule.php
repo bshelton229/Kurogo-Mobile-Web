@@ -9,7 +9,7 @@
   * @subpackage Login
   */
 class LoginWebModule extends WebModule {
-  protected $id = 'login';
+  protected static $id = 'login';
   
   protected function getAccessControlLists($type) {
         return array(AccessControlList::allAccess());
